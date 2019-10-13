@@ -1,0 +1,183 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>ARMy</title>
+  <meta name="description" content="ARMy">
+  <meta name="author" content="Kunal">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/index.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="jumbotron">
+        Welcome to ARMY <br>
+        <img src="swords.png" />
+    </div>
+    
+    <div class="container justify-contents-center">
+        <div class="col-md-12 m-*-auto" id="login">
+            <!-- <form id="getCredentials"> -->
+            <div class="row justify-content-center">
+                <div class="col-md-6 justify-content-center"> 
+                    <h2>Enter your username</h2>
+                    <input type="text" class="form-control" id="username" placeholder="Enter username">
+                </div>
+                <div class="col-md-6 justify-content-center"> 
+                    <h2>Enter your Session ID</h2>
+                    <input type="text" class="form-control" id="sessionID" placeholder="Enter sessionID">
+                </div>
+                <div class="col-md-12 text-center"> 
+                        <button id="submitButton" name="singlebutton" class="btn btn-primary">Play!</button> 
+                    </div>
+            </div>
+        <!-- </form> -->
+        </div>
+        <div class="col-md-12 m-*-auto" id="move" style="display:none;">
+                <div class="row justify-content-center">
+                    <h1>Move your player </h1> <br>
+                    <!-- <br><p id="movement"></p> -->
+                    <div class="col-md-12 text-center"> 
+                            <button id="logOut" name="singlebutton" class="btn btn-primary">Logout</button> 
+                        </div>
+                </div>
+            </div>
+    </div>
+
+    <script>
+       
+
+        var submitButton = document.getElementById('submitButton')
+        var logoutButton = document.getElementById('logOut')
+        logoutButton.onclick = function(){
+            window.location.reload(true);
+        }
+        submitButton.onclick  = function(){
+            if(document.getElementById('username').value == "" || document.getElementById('sessionID').value == ""){
+                alert("Enter your username")
+            }
+            else{
+                var userName = document.getElementById('username').value;
+            var sessionID = document.getElementById('sessionID').value;
+            console.log(userName)
+            console.log(sessionID)
+            document.getElementById("login").style.display = "none";
+            document.getElementById("move").style.display = "block";
+            var killer_url = "https://us-central1-ar-murder.cloudfunctions.net/app/killer/"+sessionID
+                    var killer_settings = {url:killer_url,method:"GET",async:"false"};
+                    var killer = ""
+                    $.ajax(killer_settings).done(function(response){
+                        killer = response["killer"]
+                        console.log(killer)
+                    })
+
+                document.addEventListener('keydown', event => {
+                    const key = event.key.toLowerCase();
+                    console.log(key);
+                    $("#movement").html(key)
+
+                    if (event.keyCode === 37){
+                        var i_url = "https://us-central1-ar-murder.cloudfunctions.net/app/move/"+sessionID+"/"+userName+"/left"
+                         var settings = {url:i_url,method:"GET",async:"false"};
+                        $.ajax(settings).done(function(response){
+                            console.log(response);
+                        })   
+                    }
+                    if (event.keyCode === 38){
+                        var i_url = "https://us-central1-ar-murder.cloudfunctions.net/app/move/"+sessionID+"/"+userName+"/up"
+                         var settings = {url:i_url,method:"GET",async:"false"};
+                        $.ajax(settings).done(function(response){
+                            console.log(response);
+                        })   
+                    }
+                    if (event.keyCode === 39){
+                        var i_url = "https://us-central1-ar-murder.cloudfunctions.net/app/move/"+sessionID+"/"+userName+"/right"
+                         var settings = {url:i_url,method:"GET",async:"false"};
+                        $.ajax(settings).done(function(response){
+                            console.log(response);
+                        })   
+                    }
+                    if (event.keyCode === 40){
+                        var i_url = "https://us-central1-ar-murder.cloudfunctions.net/app/move/"+sessionID+"/"+userName+"/down"
+                         var settings = {url:i_url,method:"GET",async:"false"};
+                        $.ajax(settings).done(function(response){
+                            console.log(response);
+                        })   
+                    }
+                    
+                    if (event.keyCode === 72 && killer == userName){
+                        var kill_url = "https://us-central1-ar-murder.cloudfunctions.net/app/kill/"+sessionID+"/E"
+                        var kill_settings = {url:kill_url,method:"GET",async:"false"};
+                        $.ajax(kill_settings).done(function(response){
+                            console.log(response);
+                        })   
+                    }
+                    if (event.keyCode === 89 && killer == userName){
+                        var kill_url = "https://us-central1-ar-murder.cloudfunctions.net/app/kill/"+sessionID+"/NE"
+                        var kill_settings = {url:kill_url,method:"GET",async:"false"};
+                        $.ajax(kill_settings).done(function(response){
+                            console.log(response);
+                        })   
+                    }
+                    if (event.keyCode === 84 && killer == userName){
+                        var kill_url = "https://us-central1-ar-murder.cloudfunctions.net/app/kill/"+sessionID+"/N"
+                        var kill_settings = {url:kill_url,method:"GET",async:"false"};
+                        $.ajax(kill_settings).done(function(response){
+                            console.log(response);
+                        })   
+                    }
+                    if (event.keyCode === 82 && killer == userName){
+                        var kill_url = "https://us-central1-ar-murder.cloudfunctions.net/app/kill/"+sessionID+"/NW"
+                        var kill_settings = {url:kill_url,method:"GET",async:"false"};
+                        $.ajax(kill_settings).done(function(response){
+                            console.log(response);
+                        })   
+                    }
+                    if (event.keyCode === 70 && killer == userName){
+                        var kill_url = "https://us-central1-ar-murder.cloudfunctions.net/app/kill/"+sessionID+"/W"
+                        var kill_settings = {url:kill_url,method:"GET",async:"false"};
+                        $.ajax(kill_settings).done(function(response){
+                            console.log(response);
+                        })   
+                    }
+                    if (event.keyCode === 86 && killer == userName){
+                        var kill_url = "https://us-central1-ar-murder.cloudfunctions.net/app/kill/"+sessionID+"/SW"
+                        var kill_settings = {url:kill_url,method:"GET",async:"false"};
+                        $.ajax(kill_settings).done(function(response){
+                            console.log(response);
+                        })   
+                    }
+                    if (event.keyCode === 66 && killer == userName){
+                        var kill_url = "https://us-central1-ar-murder.cloudfunctions.net/app/kill/"+sessionID+"/S"
+                        var kill_settings = {url:kill_url,method:"GET",async:"false"};
+                        $.ajax(kill_settings).done(function(response){
+                            console.log(response);
+                        })   
+                    }
+                    if (event.keyCode === 78 && killer == userName){
+                        var kill_url = "https://us-central1-ar-murder.cloudfunctions.net/app/kill/"+sessionID+"/SE"
+                        var kill_settings = {url:kill_url,method:"GET",async:"false"};
+                        $.ajax(kill_settings).done(function(response){
+                            console.log(response);
+                        })   
+                    }
+                });
+
+        }
+            }
+             
+    </script>
+
+
+  <!-- <script src="js/scripts.js"></script> -->
+</body>
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</html>
