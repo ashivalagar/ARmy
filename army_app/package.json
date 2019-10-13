@@ -1,0 +1,32 @@
+{
+  "name": "intuition_for_real",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "prestart": "./node_modules/react-viro/bin/run_ngrok.sh",
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "jquery": "^3.4.1",
+    "node-fetch": "^2.6.0",
+    "react": "16.8.3",
+    "react-native": "0.59.3",
+    "react-native-firebase": "^5.5.6",
+    "react-native-gesture-handler": "^1.4.1",
+    "react-native-google-signin": "^2.1.0",
+    "react-navigation": "^4.0.10",
+    "react-viro": "2.16.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/runtime": "^7.6.3",
+    "babel-jest": "^24.9.0",
+    "jest": "^24.9.0",
+    "metro-react-native-babel-preset": "^0.56.0",
+    "react-test-renderer": "16.8.3"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
