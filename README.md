@@ -38,7 +38,7 @@ Steps:
 6. All the victims vote for who they think the killer might be. If the majority vote is correct, the killer loses. 
 
 
-### Explaining the features of the apps
+
 
 ---
 
