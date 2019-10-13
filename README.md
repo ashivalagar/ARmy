@@ -1,16 +1,22 @@
 # ARmy
 ## Table Code: AA
 
-A murder mystery game made using ReactNative, ReactViro and firebase. The game is multiplayer, playable on your phone and uses AR.
+A murder mystery game made using ReactNative, ReactViro and firebase. The game is multiplayer, playable on your phone and uses AR. You may find a live demo here: www.army-ntu.firebaseapp.com
 
 ---
 
 ## About Us
 
+We are year 3 students of NTU passionate about innovative creations and games. This is the first time we explored game development using Augmented Reality (AR). 
+
 
 ### Inspiration
 
+It's inspired by the idea of having a virtual board game over dinner or get togethers. No more the hassle of bringing a physical board game. We wanted to a game which was easy to follow but also requires the player to think creatively and make a smart move to survive. 
+
 ### Solution
+
+
 
 
 
@@ -37,12 +43,16 @@ Steps:
 5. If the killer murders all the victims, killer wins. 
 6. All the victims vote for who they think the killer might be. If the majority vote is correct, the killer loses. 
 
+### Game controls
 
+Each player can control their movements by up, down, left and right movements through this website: www.army-ntu.firebaseapp.com. 
 
 
 ---
 
 ## Setting up the app for development
+
+To begin using the app, clone the repository and 
 
 ### Prerequisites
 
