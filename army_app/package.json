@@ -11,7 +11,7 @@
     "jquery": "^3.4.1",
     "node-fetch": "^2.6.0",
     "react": "16.8.3",
-    "react-native": "0.59.3",
+    "react-native": "0.62.3",
     "react-native-firebase": "^5.5.6",
     "react-native-gesture-handler": "^1.4.1",
     "react-native-google-signin": "^2.1.0",
